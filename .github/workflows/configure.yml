@@ -8,8 +8,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Check AWS CLI version
-        run: aws --version
+      - name: Configure AWS CLI 
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AccessKeyId }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AccessKeySecret }}
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set default.region ${Region}
+          aws configure set default.output json
