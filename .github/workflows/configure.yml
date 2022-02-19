@@ -17,3 +17,4 @@ jobs:
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
           aws configure set default.region us-east-1
           aws configure set default.output json
+          aws ec2 describe-instances --profile awsbootstrap
